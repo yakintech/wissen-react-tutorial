@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {  remove } from '../../store/favoritesSlice'
 import { HomeModel } from '../../models/HomeModel'
 import FavoriteReducer from '../../store/favoritesSlice'
+import { FavToStorage } from '../../util/FavToStorage'
 
 
 const FavoritesScreen = ({ navigation }: any) => {
@@ -23,6 +24,11 @@ const FavoritesScreen = ({ navigation }: any) => {
   const removeToFav = (item: any) => {
 
     dispatch(remove(item))
+
+    let favToStorage = new FavToStorage();
+    favToStorage.removeToFav(item);
+
+    
   }
 
   const renderItem = ({ item }: any) => {

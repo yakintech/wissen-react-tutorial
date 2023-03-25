@@ -3,6 +3,7 @@ import React from 'react'
 import { homeData } from '../../data/homeData'
 import { useDispatch } from 'react-redux'
 import { add } from '../../store/favoritesSlice'
+import { FavToStorage } from '../../util/FavToStorage'
 
 const HomeScreen = ({ navigation }: any) => {
 
@@ -15,9 +16,10 @@ const HomeScreen = ({ navigation }: any) => {
   let dispatch = useDispatch();
 
   const addToFav = (item: any) => {
-    console.log('ITEM', item);
     
     dispatch(add(item))
+    let favToStorage = new FavToStorage();
+    favToStorage.addToFav(item);
   }
 
   const renderItem = ({ item }: any) => {
