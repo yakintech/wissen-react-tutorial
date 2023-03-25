@@ -1,15 +1,9 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
 import MapView, { Marker } from 'react-native-maps';
-import { homeData } from '../../data/homeData';
-
 const MuseumDetailScreen = ({ route, navigation }: any) => {
 
-  const [detail, setdetail] = useState({});
-
   const { item } = route.params;
-
-
 
   return (
     <View style={{ flex: 1 }}>

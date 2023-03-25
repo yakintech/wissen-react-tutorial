@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStackScreen from './stack/HomeStackScren';
+import FavoritesStackScreen from './stack/FavoritesStackScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +18,13 @@ const TabMain = () => {
                         { headerShown: false }
                     }
                 />
-                {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
+                <Tab.Screen
+                    name="Favorites"
+                    component={FavoritesStackScreen}
+                    options={
+                        { headerShown: false }
+                    }
+                />
             </Tab.Navigator>
         </>
     )

@@ -1,10 +1,16 @@
 import { View, Text, FlatList, Image, Pressable, Button } from 'react-native'
 import React from 'react'
-import { homeData } from '../../data/homeData'
-import { useDispatch } from 'react-redux'
-import { add } from '../../store/favoritesSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import {  remove } from '../../store/favoritesSlice'
+import { HomeModel } from '../../models/HomeModel'
+import FavoriteReducer from '../../store/favoritesSlice'
 
-const HomeScreen = ({ navigation }: any) => {
+
+const FavoritesScreen = ({ navigation }: any) => {
+
+  type IRootState = ReturnType<typeof FavoriteReducer>;
+  let state = useSelector<IRootState, HomeModel[]>(state => state.favorites);
+  
 
   const goToDetail = (item: any) => {
     navigation.navigate('MuseumDetail', {
@@ -14,10 +20,9 @@ const HomeScreen = ({ navigation }: any) => {
 
   let dispatch = useDispatch();
 
-  const addToFav = (item: any) => {
-    console.log('ITEM', item);
-    
-    dispatch(add(item))
+  const removeToFav = (item: any) => {
+
+    dispatch(remove(item))
   }
 
   const renderItem = ({ item }: any) => {
@@ -31,7 +36,7 @@ const HomeScreen = ({ navigation }: any) => {
               uri: item.img,
             }}
           />
-          <Button title='add' onPress={() => addToFav(item)}></Button>
+          <Button title='remove' onPress={() => removeToFav(item)}></Button>
         </View>
 
       </Pressable>
@@ -41,11 +46,16 @@ const HomeScreen = ({ navigation }: any) => {
 
   return (<>
     <FlatList
-      data={homeData}
+      data={state}
       renderItem={renderItem}
     />
   </>
   )
+
+
+  return (<>
+
+  </>)
 }
 
-export default HomeScreen
+export default FavoritesScreen

@@ -1,7 +1,7 @@
 import { HomeModel } from "../models/HomeModel";
 
 
-export const homeData : HomeModel[] = [
+export let homeData : HomeModel[] = [
     {
         id:1,
         name:'Resim Müzesi',
