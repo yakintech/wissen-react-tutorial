@@ -1,19 +1,18 @@
 import { View, Text, FlatList, Image, Pressable } from 'react-native'
 import React from 'react'
 import { homeData } from '../../data/homeData'
-import { HomeModel } from '../../models/HomeModel'
 
 const HomeScreen = ({ navigation }: any) => {
 
-  const goToDetail = (id: any) => {
+  const goToDetail = (item: any) => {
     navigation.navigate('MuseumDetail', {
-      id: id
+      item: item
     })
   }
 
   const renderItem = ({ item }: any) => {
     return <>
-      <Pressable onPress={() => goToDetail(item.id)}>
+      <Pressable onPress={() => goToDetail(item)}>
         <View>
           <Text style={{ fontSize: 30 }}>{item.name}</Text>
           <Image
