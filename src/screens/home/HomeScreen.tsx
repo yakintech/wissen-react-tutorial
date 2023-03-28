@@ -7,7 +7,8 @@ import { Button, Card, Text } from 'react-native-paper';
 import FavoriteReducer from '../../store/favoritesSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { HomeModel } from '../../models/HomeModel'
-import Contacts from 'react-native-contacts';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MuseumBox from '../../components/MuseumBox'
 
 
 const HomeScreen = ({ navigation }: any) => {
@@ -61,16 +62,16 @@ const HomeScreen = ({ navigation }: any) => {
     //   ],
     //   isStarred: false,
     // }
-    
+
     // Contacts.addContact(newPerson)
 
 
     // Contacts.getAll().then(contacts => {
     //   contacts.forEach(item => {
     //     console.log('Item', item.phoneNumbers[0]?.number);
-        
+
     //   })
-      
+
     // })
   }, [])
 
@@ -101,21 +102,7 @@ const HomeScreen = ({ navigation }: any) => {
 
     let isFavorite = favorites.find(q => q.id == item.id)
     return <>
-      <Card>
-        <Pressable onPress={() => goToDetail(item)}>
-          <Card.Content>
-            <Text variant="titleLarge">{item.name}</Text>
-            <Text variant="bodyMedium">{item.description}</Text>
-          </Card.Content>
-          <Card.Cover source={{ uri: item.img }} />
-        </Pressable>
-
-        <Card.Actions>
-          {
-            isFavorite != undefined ? <Button onPress={() => removeToFav(item)}>Remove to favorites</Button> : <Button onPress={() => addToFav(item)}>Add to favorites</Button>
-          }
-        </Card.Actions>
-      </Card>
+      <MuseumBox isFavorite={isFavorite} goToDetail={goToDetail} item={item} removeToFav={removeToFav} addToFav={addToFav}/>
     </>
   }
 

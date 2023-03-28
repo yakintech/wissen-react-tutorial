@@ -5,8 +5,10 @@ const MuseumDetailScreen = ({ route, navigation }: any) => {
 
   const { item } = route.params;
 
-  return (
+  return (<>
     <View style={{ flex: 1 }}>
+
+      
       <MapView
       region={{latitude: item.lat, longitude: item.let,   latitudeDelta: 0.01,
         longitudeDelta: 0.01,}}
@@ -17,17 +19,9 @@ const MuseumDetailScreen = ({ route, navigation }: any) => {
           coordinate={{ latitude: item.lat, longitude: item.let }}
         />
       </MapView>
-
-      {/* <MapView
-        style={{ ...StyleSheet.absoluteFillObject }}
-        initialRegion={{
-          latitude: item.lat,
-          longitude: item.let,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-      /> */}
     </View>
+  </>
+  
   )
 }
 
