@@ -9,6 +9,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { load } from '../store/favoritesSlice';
 import FavoriteReducer from '../store/favoritesSlice';
 import { HomeModel } from '../models/HomeModel';
+import ContactStackScreen from './stack/CameraStackScreen';
+import CameraStackScreen from './stack/CameraStackScreen';
+import FileStackScreen from './stack/FileStackScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -20,7 +23,7 @@ const TabMain = () => {
 
     type IRootState = ReturnType<typeof FavoriteReducer>;
     let state = useSelector<IRootState, HomeModel[]>(state => state.favorites);
-    
+
 
     useEffect(() => {
 
@@ -61,7 +64,38 @@ const TabMain = () => {
                                 <MaterialCommunityIcons name="star" color={color} size={26} />
                             ),
                             tabBarBadge: state.length
-                        
+
+                        }
+
+                    }
+                />
+
+                <Tab.Screen
+                    name="Contact"
+                    component={CameraStackScreen}
+                    options={
+                        {
+                            headerShown: false,
+                            tabBarIcon: ({ color }: any) => (
+                                <MaterialCommunityIcons name="camera" color={color} size={26} />
+                            ),
+                    
+
+                        }
+
+                    }
+                />
+                  <Tab.Screen
+                    name="File"
+                    component={FileStackScreen}
+                    options={
+                        {
+                            headerShown: false,
+                            tabBarIcon: ({ color }: any) => (
+                                <MaterialCommunityIcons name="file" color={color} size={26} />
+                            ),
+                    
+
                         }
 
                     }
